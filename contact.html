@@ -16,11 +16,24 @@
 })();
 </script>
 <style>
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); max-width: 700px; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-3); max-width: 760px; }
   .contact-block { border: 1px solid var(--line); padding: var(--space-3); }
   .contact-block h3 { margin-bottom: var(--space-1); }
   .contact-block a { color: var(--text-secondary); }
   .contact-block a:hover { color: var(--text); }
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text);
+    font-size: 14px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .whatsapp-btn:hover { background: #25D366; color: #000; border-color: #25D366; }
   @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -36,9 +49,9 @@
       <a href="testimonials.html">Testimonials</a>
       <a href="about.html">About</a>
       <a href="contact.html" aria-current="page">Contact</a>
-      <a href="cart.html" class="nav-cart">Cart&nbsp;<span class="cart-count">0</span></a>
-    </nav>
+      </nav>
     <div class="nav-actions">
+      <a href="cart.html" class="nav-cart" aria-label="View cart"><span class="cart-icon">🛒</span><span class="cart-count">0</span></a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">☀️</button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     </div>
@@ -56,13 +69,21 @@
     <div class="contact-grid">
       <div class="contact-block">
         <h3>Email</h3>
-        <a href="mailto:hello@australiavapedistrict.com" class="mt-1" style="display:block;">hello@australiavapedistrict.com</a>
+        <a href="mailto:aussiedistrict@gmail.com" class="mt-1" style="display:block;">aussiedistrict@gmail.com</a>
       </div>
       <div class="contact-block">
         <h3>Phone</h3>
-        <a href="tel:+61000000000" class="mt-1" style="display:block;">+61 XXX XXX XXX</a>
+        <a href="tel:+61485921610" class="mt-1" style="display:block;">+61 485 921 610</a>
+      </div>
+      <div class="contact-block">
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/61485921610" target="_blank" rel="noopener" class="whatsapp-btn mt-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.39c1.45.79 3.08 1.21 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.43.19.5.3.06.11.06.63-.18 1.3z"/></svg>
+          Message us on WhatsApp
+        </a>
       </div>
     </div>
+    <p class="small mt-3">For general enquiries, use the email or WhatsApp above. For order-specific questions, live chat in the corner is usually fastest.</p>
   </div>
 </section>
 
