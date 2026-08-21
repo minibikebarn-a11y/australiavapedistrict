@@ -226,6 +226,34 @@ async function placeOrder(e) {
   document.getElementById("confirmationView").style.display = "block";
   window.scrollTo({ top: 0, behavior: "smooth" });
 
+  // Notify the business + customer by email. Fire-and-forget: an email
+  // failure shouldn't block or delay the customer's confirmation screen,
+  // but we log it so it's visible in Vercel's function logs if it happens.
+  const emailPayload = {
+    orderNumber,
+    items: getCartDetails().map(line => ({
+      name: line.product.name,
+      option: line.option,
+      qty: line.qty,
+      lineTotal: line.lineTotal
+    })),
+    subtotal,
+    shipping,
+    shippingLabel,
+    total,
+    paymentMethod,
+    customerEmail: billing.email,
+    customerFirstName: billing.firstName,
+    billingAddressText: formatAddress(billing),
+    shippingAddressText: formatAddress(shippingAddress),
+    orderNotes
+  };
+  fetch("/api/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(emailPayload)
+  }).catch(err => console.error("Order notification email failed to send:", err));
+
   // Clear cart now that the order has been captured
   saveCart([]);
 }
