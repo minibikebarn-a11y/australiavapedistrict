@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — australiavapedistrict</title>
+<meta name="description" content="Learn about disposable and refillable vapes, and the safety measures behind every australiavapedistrict order.">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('avd_theme') === 'light') {
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  } catch(e){}
+})();
+</script>
+<style>
+  .about-media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+  }
+  .about-media-grid img { aspect-ratio: 4/5; object-fit: cover; }
+  @media (max-width: 700px) { .about-media-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 420px) { .about-media-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<script src="js/age-gate.js"></script>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">australiavapedistrict</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="nav-cart">Cart&nbsp;<span class="cart-count">0</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">☀️</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">About</span>
+      <h1>Disposables, devices, and doing it properly.</h1>
+      <p class="mt-2">Disposable vapes are single-use devices, pre-filled and pre-charged, built to be used until empty and then replaced — no refilling, no charging, no maintenance. Refillable devices (pod kits and mods) trade that convenience for control: you choose the e-liquid, manage the coil, and get more use out of one device over time. Both have a place depending on how you vape.</p>
+      <p class="mt-2">Safety comes down to a few fundamentals: buy from a source that discloses what's actually in the product, store devices away from heat and out of reach of children and pets, stop using a device if it leaks, overheats, or tastes burnt, and never modify a device beyond what the manufacturer intends. All products listed here are intended for adults only.</p>
+    </div>
+
+    <div class="about-media-grid">
+      <img src="images/about-1.jpg" alt="Vape product photography 1">
+      <img src="images/about-2.jpg" alt="Vape product photography 2">
+      <img src="images/about-3.jpg" alt="Vape product photography 3">
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="shop.html" class="btn btn-solid">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <div class="badges">
+      <div class="badge">
+        <h3>Free Shipping</h3>
+        <p class="mt-1">Available on every order, delivered within 24 hours.</p>
+      </div>
+      <div class="badge">
+        <h3>Secure Payments</h3>
+        <p class="mt-1">Crypto, bank transfer and PayID — all handled through verified channels.</p>
+      </div>
+      <div class="badge">
+        <h3>Money Back Guarantee</h3>
+        <p class="mt-1">Faulty or incorrect item on arrival — we make it right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <h2>Sign up to australiavapedistrict</h2>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit" class="btn btn-solid">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">australiavapedistrict</div>
+        <p class="small">261 Church St, Parramatta NSW 2150, Australia</p>
+        <p class="small mt-1">hello@australiavapedistrict.com</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Support</div>
+        <ul class="footer-links">
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span class="footer-year"></span> australiavapedistrict. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/social-proof.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

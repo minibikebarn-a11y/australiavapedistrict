@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — australiavapedistrict</title>
+<meta name="description" content="Browse disposable vapes, nic salts, devices and accessories. Filter by category and price.">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('avd_theme') === 'light') {
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  } catch(e){}
+})();
+</script>
+</head>
+<body>
+<script src="js/age-gate.js"></script>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">australiavapedistrict</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="nav-cart">Cart&nbsp;<span class="cart-count">0</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">☀️</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= BROWSE VIEW ================= -->
+<section class="section" id="shopBrowse">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Shop</span>
+      <h1>The Full Range</h1>
+    </div>
+
+    <div class="shop-layout">
+      <!-- Sidebar: search, price filter, categories -->
+      <aside class="shop-sidebar">
+        <div class="shop-block">
+          <div class="shop-block-title">Search</div>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search products…" aria-label="Search products">
+          <p class="sidebar-hint">Search by product name, category, or flavor.</p>
+        </div>
+
+        <div class="shop-block">
+          <div class="shop-block-title">Filter by Price</div>
+          <div class="price-filter-row">
+            <span>$</span>
+            <input type="number" id="priceInput" min="50" step="1" placeholder="e.g. 50">
+          </div>
+          <p class="price-hint">Enter an amount ($50 minimum) to see products at or above that price.</p>
+        </div>
+
+        <div class="shop-block">
+          <button type="button" id="categoryToggle" class="category-toggle">
+            <span>Categories</span><span id="categoryToggleIcon">+</span>
+          </button>
+          <div id="categoryPanel" style="display:none;">
+            <p class="sidebar-hint mt-1" style="margin-bottom:10px;">Click a category to filter the shop. Numbers in brackets show how many products are in each.</p>
+            <ul class="category-list" id="categoryList"></ul>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Product grid -->
+      <div>
+        <div id="categoryInfo" class="category-info" style="display:none;"></div>
+        <p class="shop-results-meta" id="resultsMeta"></p>
+        <div class="product-grid" id="shopGrid"></div>
+        <p class="empty-state" id="emptyState" style="display:none;">No products match your search or filters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCT DETAIL VIEW ================= -->
+<section class="section" id="shopDetail" style="display:none;">
+  <div class="container">
+    <a href="shop.html" class="back-link">← Back to Shop</a>
+    <div class="product-detail" id="productDetailContent"></div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="newsletter">
+  <div class="container">
+    <h2>Sign up to australiavapedistrict</h2>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit" class="btn btn-solid">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">australiavapedistrict</div>
+        <p class="small">261 Church St, Parramatta NSW 2150, Australia</p>
+        <p class="small mt-1">hello@australiavapedistrict.com</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Support</div>
+        <ul class="footer-links">
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span class="footer-year"></span> australiavapedistrict. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/social-proof.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a8789f6f1cd94343fb836f4/1k0gn5r2a';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

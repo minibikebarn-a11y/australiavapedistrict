@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — australiavapedistrict</title>
+<meta name="description" content="See what customers say about their australiavapedistrict orders and delivery experience.">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('avd_theme') === 'light') {
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  } catch(e){}
+})();
+</script>
+<style>
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+  .review-card { border: 1px solid var(--line); overflow: hidden; }
+  .review-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .review-caption { padding: var(--space-2); font-size: 13px; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<script src="js/age-gate.js"></script>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">australiavapedistrict</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="testimonials.html" aria-current="page">Testimonials</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="nav-cart">Cart&nbsp;<span class="cart-count">0</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">☀️</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Testimonials</span>
+      <h1>What customers are saying</h1>
+      <p class="mt-2">Real photos and screenshots from customers after their order arrived — no scripted reviews, just what people send us once their package lands.</p>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <img src="images/review-1.jpg" alt="Customer review screenshot 1">
+        <div class="review-caption">Delivered to Parramatta NSW — 2 day turnaround.</div>
+      </div>
+      <div class="review-card">
+        <img src="images/customer-video.mp4" alt="Customer review screenshot 2">
+        <div class="review-caption">Repeat customer, third order this year.</div>
+      </div>
+      <div class="review-card">
+        <img src="images/review-3.jpg" alt="Customer review screenshot 3">
+        <div class="review-caption">Discreet packaging, exactly as described.</div>
+      </div>
+      <div class="review-card">
+        <img src="images/review-4.jpg" alt="Customer review screenshot 4">
+        <div class="review-caption">Crypto payment, order confirmed within the hour.</div>
+      </div>
+      <div class="review-card">
+        <img src="images/review-5.jpg" alt="Customer review screenshot 5">
+        <div class="review-caption">First-time buyer, smooth checkout experience.</div>
+      </div>
+      <div class="review-card">
+        <img src="images/review-6.jpg" alt="Customer review screenshot 6">
+        <div class="review-caption">Express shipping arrived next day.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <h2>Sign up to australiavapedistrict</h2>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit" class="btn btn-solid">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">australiavapedistrict</div>
+        <p class="small">261 Church St, Parramatta NSW 2150, Australia</p>
+        <p class="small mt-1">hello@australiavapedistrict.com</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Support</div>
+        <ul class="footer-links">
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span class="footer-year"></span> australiavapedistrict. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/social-proof.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

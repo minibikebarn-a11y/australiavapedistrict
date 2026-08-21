@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — australiavapedistrict</title>
+<meta name="description" content="Complete your order at australiavapedistrict.">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function(){
+  try {
+    if (localStorage.getItem('avd_theme') === 'light') {
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  } catch(e){}
+})();
+</script>
+</head>
+<body>
+<script src="js/age-gate.js"></script>
+
+<header class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">australiavapedistrict</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="nav-cart">Cart&nbsp;<span class="cart-count">0</span></a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">☀️</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= CHECKOUT FORM VIEW ================= -->
+<section class="section" id="checkoutView">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Checkout</span>
+      <h1>Checkout</h1>
+    </div>
+
+    <div id="emptyCartNotice" class="empty-state" style="display:none;">
+      Your cart is empty. <a href="shop.html" style="text-decoration:underline;color:var(--text);">Browse the shop →</a>
+    </div>
+
+    <form id="checkoutForm" class="checkout-layout" novalidate>
+      <div>
+        <!-- Billing details -->
+        <div class="checkout-section">
+          <h3>Billing Details</h3>
+          <div class="field-row">
+            <div class="field"><label for="billFirstName">First Name</label><input type="text" id="billFirstName" required></div>
+            <div class="field"><label for="billLastName">Last Name</label><input type="text" id="billLastName" required></div>
+          </div>
+          <div class="field"><label for="billCountry">Country / Region</label><input type="text" id="billCountry" value="Australia" required></div>
+          <div class="field"><label for="billSuburb">Suburb</label><input type="text" id="billSuburb" required></div>
+          <div class="field-row">
+            <div class="field"><label for="billState">State</label><input type="text" id="billState" required></div>
+            <div class="field"><label for="billPostcode">Postcode</label><input type="text" id="billPostcode" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="billPhone">Phone</label><input type="tel" id="billPhone" required></div>
+            <div class="field"><label for="billEmail">Email</label><input type="email" id="billEmail" required></div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="shipDifferent">
+            <label for="shipDifferent">Ship to a different address</label>
+          </div>
+
+          <div id="shipAddressFields" style="display:none;">
+            <div class="field-row">
+              <div class="field"><label for="shipFirstName">First Name</label><input type="text" id="shipFirstName"></div>
+              <div class="field"><label for="shipLastName">Last Name</label><input type="text" id="shipLastName"></div>
+            </div>
+            <div class="field"><label for="shipCountry">Country / Region</label><input type="text" id="shipCountry" value="Australia"></div>
+            <div class="field"><label for="shipSuburb">Suburb</label><input type="text" id="shipSuburb"></div>
+            <div class="field-row">
+              <div class="field"><label for="shipState">State</label><input type="text" id="shipState"></div>
+              <div class="field"><label for="shipPostcode">Postcode</label><input type="text" id="shipPostcode"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="shipPhone">Phone</label><input type="tel" id="shipPhone"></div>
+              <div class="field"><label for="shipEmail">Email</label><input type="email" id="shipEmail"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="orderNotes">Order Notes (optional)</label>
+            <textarea id="orderNotes" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Shipping method -->
+        <div class="checkout-section">
+          <h3>Shipping Method</h3>
+          <label class="shipping-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="shipping" value="0" data-label="Free Shipping" checked><span class="option-title">Free Shipping <span class="option-sub">(up to 24 hours)</span></span></div>
+              <span class="option-price">$0.00</span>
+            </div>
+          </label>
+          <label class="shipping-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="shipping" value="25" data-label="Standard Shipping"><span class="option-title">Standard Shipping</span></div>
+              <span class="option-price">$25.00</span>
+            </div>
+          </label>
+          <label class="shipping-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="shipping" value="35" data-label="Express Shipping"><span class="option-title">Express Shipping</span></div>
+              <span class="option-price">$35.00</span>
+            </div>
+          </label>
+          <label class="shipping-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="shipping" value="89" data-label="International Shipping"><span class="option-title">International Shipping</span></div>
+              <span class="option-price">$89.00</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Payment -->
+        <div class="checkout-section">
+          <h3>Payment</h3>
+
+          <label class="payment-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="payment" value="crypto" checked><span class="option-title">Cryptocurrency</span></div>
+            </div>
+            <div id="cryptoOptions" class="mt-2">
+              <div class="field">
+                <label for="cryptoCurrency">Select currency</label>
+                <select id="cryptoCurrency">
+                  <option value="btc-segwit">Bitcoin (SegWit)</option>
+                  <option value="sol">Solana</option>
+                </select>
+              </div>
+              <p class="small" id="liveRateNote">Fetching live exchange rate…</p>
+            </div>
+          </label>
+
+          <label class="payment-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="payment" value="bank"><span class="option-title">Bank Transfer</span></div>
+            </div>
+            <div class="payment-detail-note" id="bankNote" style="display:none;">Please contact our live agent for bank details.</div>
+          </label>
+
+          <label class="payment-option">
+            <div class="option-row">
+              <div class="option-left"><input type="radio" name="payment" value="payid"><span class="option-title">PayID</span></div>
+            </div>
+            <div class="payment-detail-note" id="payidNote" style="display:none;">Please contact our live agent for payment instructions.</div>
+          </label>
+        </div>
+
+        <p class="place-order-note">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+
+        <div class="age-confirm-note">
+          THE PRODUCTS AND CONTENTS ON THIS WEBSITE ARE INTENDED FOR ADULTS ONLY. BY BUYING FROM THIS WEBSITE, YOU CONFIRM THAT YOU ARE OF LEGAL SMOKING AGE.
+        </div>
+      </div>
+
+      <!-- Order summary -->
+      <aside class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="order-summary-items" id="summaryItems"></div>
+        <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="summaryShipping">$0.00</span></div>
+        <div class="summary-row total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
+
+        <div class="min-order-blocker" id="minOrderBlocker" style="display:none;"></div>
+
+        <button type="submit" class="btn btn-solid btn-block mt-2" id="placeOrderBtn">Place Order</button>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<!-- ================= CONFIRMATION VIEW ================= -->
+<section class="section" id="confirmationView" style="display:none;">
+  <div class="container confirmation-box">
+    <span class="eyebrow">Order Confirmation</span>
+    <h1 id="confirmationHeading">Thank you, your order has been received.</h1>
+
+    <div id="cryptoPaymentPanel" style="display:none;">
+      <p class="mt-2" id="cryptoInstruction"></p>
+      <div class="crypto-pay-panel">
+        <img id="qrCodeImg" src="" alt="Payment QR code">
+        <div>
+          <div class="small">Send exactly</div>
+          <div id="cryptoAmount" style="font-size:1.2rem;"></div>
+          <div class="small mt-1">To this address</div>
+          <div class="crypto-address" id="cryptoAddress"></div>
+          <div class="small mt-1" id="cryptoWindow"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="agentPaymentPanel" style="display:none;">
+      <div class="agent-note-box">
+        <p id="agentInstruction"></p>
+      </div>
+    </div>
+
+    <h3 class="mt-4">Order Details</h3>
+    <table class="order-detail-table" id="orderDetailTable"></table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">australiavapedistrict</div>
+        <p class="small">261 Church St, Parramatta NSW 2150, Australia</p>
+        <p class="small mt-1">hello@australiavapedistrict.com</p>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Support</div>
+        <ul class="footer-links">
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span class="footer-year"></span> australiavapedistrict. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/social-proof.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/checkout.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a8789f6f1cd94343fb836f4/1k0gn5r2a';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
