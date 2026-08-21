@@ -145,6 +145,7 @@ p.lead { color: var(--text); font-size: 1.05rem; }
 
 /* ---- Nav ---- */
 .nav {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -153,6 +154,7 @@ p.lead { color: var(--text); font-size: 1.05rem; }
   align-items: center;
   background: var(--bg);
   border-bottom: 1px solid var(--line);
+  width: 100%;
 }
 .nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
 .nav-logo {
@@ -211,7 +213,7 @@ p.lead { color: var(--text); font-size: 1.05rem; }
 #ageGateOverlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 2147483647;
   background: var(--bg);
   color: var(--text);
   display: flex;
@@ -345,6 +347,15 @@ p.lead { color: var(--text); font-size: 1.05rem; }
 .card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 2px 0 2px; }
 .card-price { color: var(--text-secondary); font-size: 14px; }
 .card .btn { margin-top: var(--space-1); font-size: 12px; padding: 10px 18px; }
+
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: var(--space-2); }
+  .card { padding: 10px; gap: 4px; }
+  .card .btn { padding: 8px 10px; font-size: 11px; }
+  .card-name { font-size: 13px; }
+  .card-desc { font-size: 11px; }
+  .card-price { font-size: 13px; }
+}
 
 /* ---- Trust badges ---- */
 .badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); text-align: center; }

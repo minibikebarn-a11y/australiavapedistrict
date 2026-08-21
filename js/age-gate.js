@@ -2,17 +2,35 @@
    Age verification gate — shown once per browser until confirmed.
    This script is loaded as the very first thing inside <body> on every
    page, so it can inject the overlay before any real content is visible.
+
+   It also tells the Tawk.to chat widget (on pages that have it) to stay
+   hidden until the age is confirmed. This matters because Tawk renders its
+   bubble with a very high z-index and adds it to the page after our
+   overlay, so relying on z-index alone isn't enough to keep it hidden —
+   we have to use Tawk's own hideWidget()/showWidget() API instead.
    ========================================================================== */
 
 (function () {
   var VERIFIED_KEY = "avd_age_verified";
 
-  try {
-    if (localStorage.getItem(VERIFIED_KEY) === "true") return;
-  } catch (e) {
-    // localStorage unavailable — fail open rather than blocking the site entirely
-    return;
+  function isVerified() {
+    try {
+      return localStorage.getItem(VERIFIED_KEY) === "true";
+    } catch (e) {
+      return true; // localStorage unavailable — fail open rather than blocking the site
+    }
   }
+
+  // Register this before Tawk's own script runs, so it's ready the moment
+  // Tawk finishes loading — Tawk_API.onLoad is their supported hook for this.
+  window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_API.onLoad = function () {
+    if (!isVerified() && window.Tawk_API.hideWidget) {
+      window.Tawk_API.hideWidget();
+    }
+  };
+
+  if (isVerified()) return;
 
   var overlay = document.createElement("div");
   overlay.id = "ageGateOverlay";
@@ -34,6 +52,9 @@
     try { localStorage.setItem(VERIFIED_KEY, "true"); } catch (e) {}
     document.documentElement.classList.remove("age-gate-locked");
     overlay.remove();
+    if (window.Tawk_API && window.Tawk_API.showWidget) {
+      window.Tawk_API.showWidget();
+    }
   });
 
   document.getElementById("ageGateNo").addEventListener("click", function () {
