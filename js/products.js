@@ -1395,3 +1395,125 @@ function productCardHTML(product) {
     </article>
   `;
 }
+
+/* ==========================================================================
+   SEO helpers — used both by the client (harmless, unused there) and by
+   the server-side rendering function (api/shop.js) to build unique,
+   crawlable title/meta/H1/JSON-LD content per product and category.
+   ========================================================================== */
+
+const KNOWN_BRANDS = [
+  "IGET", "Alfakher", "Alibarbar", "Bang", "Gunnpod", "HQD", "Cartisan", "Adalya",
+  "Brisk Bar", "Chapo", "Dope", "GOAT", "JUUL", "Groo Max", "Smok", "Uwell",
+  "Vaporesso", "Mosa", "Supremewhip", "Beco", "Beri", "Cali", "Dinner Lady",
+  "Dork Bar", "ALP", "Lucy", "Sea", "NIQ", "Fresh Farms", "Fruitia",
+  "Monster Vape Labs", "Adjust"
+];
+
+function detectBrand(product) {
+  const name = product.name;
+  const match = KNOWN_BRANDS.find(b => name.toLowerCase().startsWith(b.toLowerCase()));
+  return match || "Australia Vape District";
+}
+
+function seoTitleForProduct(product) {
+  return `${product.name} | Australia Vape District`;
+}
+
+function seoDescriptionForProduct(product) {
+  const base = product.description ||
+    `Buy ${product.name} online in Australia. Part of our ${product.category} range at Australia Vape District — fast shipping, secure checkout.`;
+  return base.length > 155 ? base.slice(0, 152) + "..." : base;
+}
+
+function seoTitleForCategory(category) {
+  return `${category} Australia | Australia Vape District`;
+}
+
+function seoDescriptionForCategory(category, count) {
+  return `Shop ${category} online in Australia. Browse ${count} product${count === 1 ? "" : "s"} in our ${category} range at Australia Vape District — fast shipping, secure checkout.`;
+}
+
+/* JSON-LD Product structured data object for a given product */
+function productJsonLd(product, baseUrl) {
+  const choiceList = product.priceVariants && product.priceVariants.length > 0
+    ? product.priceVariants.map(v => v.label)
+    : (product.flavorOptions || []);
+  return {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    name: product.name,
+    image: [`${baseUrl}/${product.image}`],
+    description: seoDescriptionForProduct(product),
+    brand: { "@type": "Brand", name: detectBrand(product) },
+    sku: product.id,
+    ...(choiceList.length > 0 ? { additionalProperty: [{ "@type": "PropertyValue", name: product.optionLabel || "Flavor", value: choiceList.join(", ") }] } : {}),
+    offers: {
+      "@type": "Offer",
+      url: `${baseUrl}/shop.html?product=${encodeURIComponent(product.id)}`,
+      priceCurrency: "AUD",
+      price: displayPrice(product).toFixed(2),
+      availability: "https://schema.org/InStock"
+    }
+  };
+}
+
+/* Server-rendered (and client-safe) HTML for the product detail body —
+   crawlable name/brand/price/availability/options/description content. */
+function productDetailServerHTML(product) {
+  const choiceList = product.priceVariants && product.priceVariants.length > 0
+    ? product.priceVariants.map(v => v.label)
+    : (product.flavorOptions || []);
+  const price = displayPrice(product);
+  const priceLabel = hasChoice(product) ? `From $${price.toFixed(2)} AUD` : `$${price.toFixed(2)} AUD`;
+  const brand = detectBrand(product);
+
+  const optionsHTML = choiceList.length > 0
+    ? `<div class="mt-2"><strong>${product.optionLabel || "Flavor"} options:</strong> ${choiceList.map(escapeHtmlSSR).join(", ")}</div>`
+    : "";
+
+  return `
+    <div class="product-detail-media">
+      <img src="${product.image}" alt="${escapeHtmlSSR(product.name)}" ${IMG_FALLBACK}>
+    </div>
+    <div class="product-detail-info">
+      <span class="eyebrow">${escapeHtmlSSR(product.category)}</span>
+      <h1>${escapeHtmlSSR(product.name)}</h1>
+      <p class="small mt-1">Brand: ${escapeHtmlSSR(brand)} · Availability: In Stock</p>
+      <p class="lead mt-2">${escapeHtmlSSR(product.description || `A ${product.category.toLowerCase()} product from our range.`)}</p>
+      ${optionsHTML}
+      <div class="product-detail-price mt-2" id="detailPrice">${priceLabel}</div>
+      <button class="btn btn-solid mt-2" id="addToCartDetail" data-product-id="${product.id}">Add to Cart</button>
+    </div>
+  `;
+}
+
+function escapeHtmlSSR(value) {
+  if (value == null) return "";
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    PRODUCTS,
+    getCategorySummary,
+    getProductById,
+    hasChoice,
+    displayPrice,
+    priceForOption,
+    productCardHTML,
+    detectBrand,
+    seoTitleForProduct,
+    seoDescriptionForProduct,
+    seoTitleForCategory,
+    seoDescriptionForCategory,
+    productJsonLd,
+    productDetailServerHTML,
+    escapeHtmlSSR
+  };
+}

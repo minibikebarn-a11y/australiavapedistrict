@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/shop.html", "destination": "/api/shop" }
+  ]
+}
