@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop — australiavapedistrict</title>
-<meta name="description" content="Browse disposable vapes, nic salts, devices and accessories. Filter by category and price.">
+<title>__TITLE__</title>
+<meta name="description" content="__META_DESCRIPTION__">
+<link rel="canonical" href="__CANONICAL__">
+__JSONLD__
 <link rel="stylesheet" href="css/style.css">
 <script>
 (function(){
@@ -39,11 +41,11 @@
 </header>
 
 <!-- ================= BROWSE VIEW ================= -->
-<section class="section" id="shopBrowse">
+<section class="section" id="shopBrowse" style="__SHOP_BROWSE_STYLE__">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Shop</span>
-      <h1>The Full Range</h1>
+      <h1>__H1__</h1>
     </div>
 
     <div class="shop-layout">
@@ -77,9 +79,9 @@
 
       <!-- Product grid -->
       <div>
-        <div id="categoryInfo" class="category-info" style="display:none;"></div>
-        <p class="shop-results-meta" id="resultsMeta"></p>
-        <div class="product-grid" id="shopGrid"></div>
+        <div id="categoryInfo" class="category-info" style="__CATEGORY_INFO_STYLE__">__CATEGORY_INFO_HTML__</div>
+        <p class="shop-results-meta" id="resultsMeta">__RESULTS_META__</p>
+        <div class="product-grid" id="shopGrid">__SHOP_GRID_HTML__</div>
         <p class="empty-state" id="emptyState" style="display:none;">No products match your search or filters.</p>
       </div>
     </div>
@@ -87,10 +89,10 @@
 </section>
 
 <!-- ================= PRODUCT DETAIL VIEW ================= -->
-<section class="section" id="shopDetail" style="display:none;">
+<section class="section" id="shopDetail" style="__SHOP_DETAIL_STYLE__">
   <div class="container">
     <a href="shop.html" class="back-link">← Back to Shop</a>
-    <div class="product-detail" id="productDetailContent"></div>
+    <div class="product-detail" id="productDetailContent">__PRODUCT_DETAIL_HTML__</div>
   </div>
 </section>
 
@@ -111,6 +113,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">australiavapedistrict</div>
+        <p class="small">261 Church St, Parramatta NSW 2150, Australia</p>
         <p class="small mt-1">hello@australiavapedistrict.com</p>
       </div>
       <div>
