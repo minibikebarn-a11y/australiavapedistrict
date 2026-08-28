@@ -57,6 +57,7 @@ module.exports = async function handler(req, res) {
   let h1, categoryInfoStyle = "display:none;", categoryInfoHTML = "";
   let resultsMeta, shopGridHTML, shopBrowseStyle = "", shopDetailStyle = "display:none;";
   let productDetailHTML = "";
+  let browseHeadingHTML;
 
   if (productId) {
     const product = getProductById(productId);
@@ -76,6 +77,13 @@ module.exports = async function handler(req, res) {
     productDetailHTML = product
       ? productDetailServerHTML(p)
       : `<div class="product-detail-info"><h1>Product Not Found</h1><p>This product may have been removed. <a href="/shop.html">Browse the shop</a>.</p></div>`;
+
+    // The browse-view section (with its own heading) is entirely hidden in
+    // product mode — the real, single <h1> for this page already lives
+    // inside productDetailHTML above. Rendering another <h1> here too,
+    // even hidden via CSS, would still leave two <h1> tags in the raw
+    // HTML, so this omits the browse heading element entirely.
+    browseHeadingHTML = "";
 
     if (product) {
       const ld = productJsonLd(p, BASE_URL);
@@ -100,6 +108,7 @@ module.exports = async function handler(req, res) {
     categoryInfoHTML = `<strong>${escapeHtmlSSR(category)}</strong> — ${escapeHtmlSSR(categoryBlurb(category))}`;
     resultsMeta = `${matchedProducts.length} product${matchedProducts.length === 1 ? "" : "s"}`;
     shopGridHTML = matchedProducts.map(productCardHTML).join("");
+    browseHeadingHTML = `<h1>${escapeHtmlSSR(category)}</h1>`;
 
     if (!validCategory) {
       res.statusCode = 404;
@@ -113,6 +122,7 @@ module.exports = async function handler(req, res) {
     h1 = "The Full Range";
     resultsMeta = `${PRODUCTS.length} products`;
     shopGridHTML = PRODUCTS.map(productCardHTML).join("");
+    browseHeadingHTML = `<h1>${escapeHtmlSSR(h1)}</h1>`;
   }
 
   const html = template
@@ -120,7 +130,7 @@ module.exports = async function handler(req, res) {
     .replace("__META_DESCRIPTION__", escapeHtmlSSR(description))
     .replace(/__CANONICAL__/g, canonical)
     .replace("__JSONLD__", jsonld)
-    .replace("__H1__", escapeHtmlSSR(h1))
+    .replace("__BROWSE_HEADING__", browseHeadingHTML)
     .replace("__SHOP_BROWSE_STYLE__", shopBrowseStyle)
     .replace("__SHOP_DETAIL_STYLE__", shopDetailStyle)
     .replace("__CATEGORY_INFO_STYLE__", categoryInfoStyle)
